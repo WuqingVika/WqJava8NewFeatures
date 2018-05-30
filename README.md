@@ -1,3 +1,4 @@
+
 ## 一、主要内容
 - 1.Lambda表达式
 - 2.函数式接口
@@ -9,21 +10,6 @@
 
 ### 1.1 Lambda表达式
 > 注：不支持Lambda表达式可参考https://blog.csdn.net/weixin_39800144/article/details/78500449?locationNum=8&fps=1进行设置。
-
-```java
- //Lambda 表达式
-    @Test
-    public void test6(){
-        List<Employee> list = filterEmployee(emps, (e) -> e.getAge() <= 35);
-        list.forEach(System.out::println);
-
-        System.out.println("------------------------------------------");
-
-        List<Employee> list2 = filterEmployee(emps, (e) -> e.getSalary() >= 5000);
-        list2.forEach(System.out::println);
-    }
-```
-
 #### 1.1.1 Lambda表达式语法
 ```java
 /*
@@ -63,8 +49,69 @@
  * 			 可以检查是否是函数式接口
  */
 ```
+```java
+ //Lambda 表达式
+    @Test
+    public void test6(){
+        List<Employee> list = filterEmployee(emps, (e) -> e.getAge() <= 35);
+        list.forEach(System.out::println);
 
-### 1.2 Stream API
+        System.out.println("------------------------------------------");
+
+        List<Employee> list2 = filterEmployee(emps, (e) -> e.getSalary() >= 5000);
+        list2.forEach(System.out::println);
+    }
+```
+### 1.2 四大内置核心函数式接口
+ - Java8 内置的四大核心函数式接口
+ ```java
+Consumer<T> : 消费型接口
+	void accept(T t);
+ ```
+
+```java
+Supplier<T> : 供给型接口
+  		T get(); 
+```
+
+```java
+  Function<T, R> : 函数型接口
+  		R apply(T t);
+ ```
+```java
+ Predicate<T> : 断言型接口
+		boolean test(T t);
+```
+### 1.3方法引用与构造器引用
+
+```java
+/*
+ * 一、方法引用：若 Lambda 体中的功能，已经有方法提供了实现，可以使用方法引用
+ * 			  （可以将方法引用理解为 Lambda 表达式的另外一种表现形式）
+ * 
+ * 1. 对象的引用 :: 实例方法名
+ * 
+ * 2. 类名 :: 静态方法名
+ * 
+ * 3. 类名 :: 实例方法名
+ * 
+ * 注意：
+ * 	 ①方法引用所引用的方法的参数列表与返回值类型，需要与函数式接口中抽象方法的参数列表和返回值类型保持一致！
+ * 	 ②若Lambda 的参数列表的第一个参数，是实例方法的调用者，第二个参数(或无参)是实例方法的参数时，格式： ClassName::MethodName
+ * 
+ * 二、构造器引用 :构造器的参数列表，需要与函数式接口中参数列表保持一致！
+ * 
+ * 1. 类名 :: new
+ * 
+ * 三、数组引用
+ * 
+ * 	类型[] :: new;
+ * 
+ * 
+ */
+ ```
+
+### 1.4 Stream API
 ```java
     //Stream API
     @Test
